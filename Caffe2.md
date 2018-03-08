@@ -53,3 +53,32 @@ majid@majid:/usr/include$ cat /usr/include/eigen3/Eigen/src/Core/util/Macros.h |
     ((defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 199901))       \
   || (defined(_LIBCPP_VERSION) && !defined(_MSC_VER)) \
 
+#######################################################################
+#error
+[ 92%] Linking CXX executable ../bin/mpi_test
+/usr/bin/ld: CMakeFiles/mpi_test.dir/mpi/mpi_test.cc.o: undefined reference to symbol '_ZN3MPI8Datatype4FreeEv'
+//usr/lib/libmpi_cxx.so.1: error adding symbols: DSO missing from command line
+collect2: error: ld returned 1 exit status
+caffe2/CMakeFiles/mpi_test.dir/build.make:100: recipe for target 'bin/mpi_test' failed
+make[2]: *** [bin/mpi_test] Error 1
+CMakeFiles/Makefile2:2685: recipe for target 'caffe2/CMakeFiles/mpi_test.dir/all' failed
+make[1]: *** [caffe2/CMakeFiles/mpi_test.dir/all] Error 2
+make[1]: *** Waiting for unfinished jobs....
+[ 92%] Building CXX object caffe2/CMakeFiles/caffe2_pybind11_state.dir/python/pybind_state_dlpack.cc.o
+[ 92%] Linking CXX executable ../bin/conv_op_test
+[ 92%] Linking CXX executable ../bin/context_test
+[ 92%] Built target context_test
+[ 92%] Building CXX object caffe2/CMakeFiles/caffe2_pybind11_state.dir/python/pybind_state_mkl.cc.o
+[ 92%] Built target conv_op_test
+[ 92%] Linking CXX shared module python/caffe2_pybind11_state.so
+[ 92%] Built target caffe2_pybind11_state
+Makefile:138: recipe for target 'all' failed
+make: *** [all] Error 2
+
+
+#solution
+option(USE_MPI "Use MPI" OFF)
+clean and make again. 
+You may need to remove libopenmpi
+sudo apt remove libopenmpi-dev openmpi-bin openmpi-doc
+
